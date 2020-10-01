@@ -10,18 +10,16 @@ public class SingletonPatternThreadSafeExample implements Serializable {
     }
 
     public static SingletonPatternThreadSafeExample getInstance() {
-
-        if (instance == null) {
+        SingletonPatternThreadSafeExample result = instance;
+        if (result == null) {
 
             synchronized (SingletonPatternThreadSafeExample.class) {
-
-                if (instance == null) {
-                    instance = new SingletonPatternThreadSafeExample();
+                if (result == null) {
+                    instance = result = new SingletonPatternThreadSafeExample();
                 }
             }
         }
-
-        return instance;
+        return result;
     }
 
     public Object readResolve(){
